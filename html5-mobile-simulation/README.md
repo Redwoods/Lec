@@ -1,4 +1,4 @@
-# Lec : EV3 coding by LEGO LME and ROOTC
+# Lec : HTML5 & Javascript - mobile simulation
 
 All lectures by Redwoods in Inje University from 2017.
 

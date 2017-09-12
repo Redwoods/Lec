@@ -1,4 +1,4 @@
-# Lec : HTML5 & Javascript - mobile simulation
+# Lec : 
 
 All lectures by Redwoods in Inje University from 2017.
 
