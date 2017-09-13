@@ -1,0 +1,80 @@
+// http server (web server)
+var http = require('http');
+port = 3000;
+
+var server = http.createServer(function(request, response) {
+  response.writeHeader(200, {
+    "Content-Type": "text/plain"
+  });
+  response.write("Hello HTTP server from node.js"); // WEB response
+  response.end();
+
+});
+
+server.listen(port);
+console.log("Server Running on " + port + 
+	".\nLaunch http://localhost:" + port);
+
+=====================================================================
+
+// tcp server (network server)
+var net = 
+var port =
+
+// Network connection using socket
+var server = net.createServer();
+
+server.listen(port, "127.0.0.1");
+console.log("Network server started at port : " + port);
+=====================================================================
+
+// File upload using formidable node module
+var formidable = require('formidable'),
+    http = require('http'),
+    util = require('util'),
+    port = 3663;
+
+http.createServer(function(req, res) {
+  if (req.url == '/upload' && req.method.toLowerCase() == 'post') {
+    // parse a file upload
+    var form = new formidable.IncomingForm();
+
+    form.parse(req, function(err, fields, files) {
+      res.writeHead(200, {'content-type': 'text/plain'});
+      res.write('received upload:\n\n');
+      res.end(util.inspect({fields: fields, files: files}));
+    });
+    return;
+  }
+  // show a file upload form
+  res.writeHead(200, {'content-type': 'text/html'});
+  res.end(
+    '<form action="/upload" enctype="multipart/form-data" method="post">'+
+    '<input type="text" name="title"><br>'+
+    '<input type="file" name="upload" multiple="multiple"><br>'+
+    '<input type="submit" value="Upload">'+
+    '</form>'
+  );
+}).listen(port);
+
+console.log("Server Running on " + port + ".\nLaunch http://localhost:" + port);
+=====================================================================
+
+// app.js, expres cerver
+var express = require('express');
+var app = express();
+var port = 3000;
+
+app.get('/', function(req, res) {
+  res.send('<a href="/hello">Hello Page</a>');
+});
+
+app.get('/hello', function(req, res) {
+  res.send('Hello HSC (하소연)');
+});
+
+var server = app.listen(port, function() {
+  console.log('Listening on port %d', server.address().port);
+});
+
+
