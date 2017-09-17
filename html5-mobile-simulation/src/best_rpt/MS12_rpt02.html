@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>원호 그리기</title>
+</head>
+
+<body>
+    <h3>원호 그리기</h3>
+    <hr>
+    <canvas id="myCanvas" width="" height="300" style="border: 2px dotted black"></canvas>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext("2d");
+       
+
+
+        context.beginPath();
+        context.strokeStyle = "black";
+        context.arc(140, 100, 80, 1.5 * Math.PI, Math.PI / 2, false);
+        var gradient = context.createLinearGradient(0, 0, 0, 200);
+        context.fillStyle = gradient;
+        gradient.addColorStop(0, "white");
+        gradient.addColorStop(1, "green");
+        context.fill();
+        context.lineWidth = 3;
+        context.stroke();
+
+
+        context.beginPath();
+        context.strokeStyle = "black";
+        context.arc(140, 100, 80, 1.5 * Math.PI, Math.PI / 2, true);
+        context.fillStyle = gradient;
+        var gradient = context.createLinearGradient(0, 0, 0, 200);
+        context.fillStyle = gradient;
+        gradient.addColorStop(0, "white");
+        gradient.addColorStop(1, "black");
+        context.fill();
+        context.lineWidth = 3;
+        context.stroke();
+
+
+        context.beginPath();
+        context.strokeStyle = "black";
+        context.arc(140, 140, 40, 1.5 * Math.PI, Math.PI / 2, true);
+        var gradient = context.createLinearGradient(0, 0, 0, 200);
+        gradient.addColorStop(0, "white");
+        gradient.addColorStop(1, "green");
+        context.fillStyle = gradient;
+        context.fill();
+        context.lineWidth = 3;
+        context.stroke();
+
+
+        context.beginPath();
+        context.strokeStyle = "black";
+        context.arc(140, 60, 40, 1.5 * Math.PI, Math.PI / 2, false);
+        var gradient = context.createLinearGradient(0, 0, 0, 200);
+        context.fillStyle = gradient;
+        gradient.addColorStop(0, "white");
+        gradient.addColorStop(1, "black");
+        context.fill();
+        context.lineWidth = 3;
+        context.stroke();
+
+
+        context.beginPath();
+        context.strokeStyle = "black";
+        context.arc(140, 60, 9, 0, 2 * Math.PI, true);
+        context.fillStyle = "yellow";
+        context.fill();
+        context.lineWidth = 3;
+        context.stroke();
+
+
+        context.beginPath();
+        context.strokeStyle = "black";
+        context.arc(140, 140, 9, 0, 2 * Math.PI, true);
+        context.fillStyle = "pink";
+        context.fill();
+        context.lineWidth = 3;
+        context.stroke();
+
+
+        context.font = "32px arial";
+        context.strokeStyle = "black";
+        context.lineWidth = 2;
+        context.textAlign = "left";
+        context.strokeText("MS12", 105, 250);
+       
+       
+
+    </script>
+</body>
+
+</html>
