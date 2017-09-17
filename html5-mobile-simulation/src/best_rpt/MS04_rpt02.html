@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!-- 이 부분은 주석문입니다. 웹 브라우저는 주석을 화면에 출력하지 않습니다. -->
+<html>
+
+<head>
+    <!-- 문서제목, 자바스크립트 코드, CSS 스타일 정의, 메타데이터정의 -->
+    <meta charset="utf-8">
+    <title>ms04 : Javascript Canvas</title>
+    <style>
+
+
+    </style>
+
+</head>
+
+<body>
+    <canvas id="myCanvas" style="background-color:aliceblue" width="1000" height="800"></canvas>
+
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext("2d");
+
+        context.beginPath();
+        context.arc(500, 400, 200, 0, 2 * Math.PI);
+        context.fillStyle = gradient;
+        var gradient = context.createLinearGradient(500, 200, 500, 600);
+        gradient.addColorStop(0, "blue");
+        gradient.addColorStop(1, "red");
+        context.stroke();
+        context.fill();
+        //큰 원
+
+        context.beginPath();
+        context.arc(500, 400, 200, Math.PI / 2, 1.5 * Math.PI);
+        context.fillStyle = gradient;
+        var gradient = context.createLinearGradient(250, 200, 250, 600);
+        gradient.addColorStop(0, "yellow");
+        gradient.addColorStop(1, "violet");
+        context.stroke();
+        context.fill();
+        //반원
+
+        context.beginPath();
+        context.arc(500, 400, 200, Math.PI / 2, 1.5 * Math.PI, true);
+        context.fillStyle = gradient;
+        var gradient = context.createLinearGradient(500, 200, 500, 600);
+        gradient.addColorStop(0, "blue");
+        gradient.addColorStop(1, "red");
+        context.stroke();
+        context.fill();
+        //반원
+
+        context.beginPath();
+        context.arc(500, 300, 100, Math.PI / 2, 1.5 * Math.PI, true);
+        context.fillStyle = gradient;
+        var gradient = context.createLinearGradient(250, 200, 250, 600);
+        gradient.addColorStop(0, "yellow");
+        gradient.addColorStop(1, "violet");
+        context.stroke();
+        context.fill();
+        //작은 반원
+
+        context.beginPath();
+        context.arc(500, 300, 20, 0, 2 * Math.PI);
+        context.fillStyle = "black";
+        context.stroke();
+        context.fill();
+        //작은 원
+
+        context.beginPath();
+        context.arc(500, 500, 100, Math.PI / 2, 1.5 * Math.PI);
+        context.fillStyle = gradient;
+        var gradient = context.createLinearGradient(500, 200, 500, 600);
+        gradient.addColorStop(0, "blue");
+        gradient.addColorStop(1, "red");
+        context.stroke();
+        context.fill();
+        //작은 반원
+
+        context.beginPath();
+        context.arc(500, 500, 20, 0, 2 * Math.PI);
+        context.fillStyle = "white";
+        context.stroke();
+        context.fill();
+        //작은 원
+
+        context.font = "50px arial";
+        context.strokeStyle = "blue";
+        context.lineWidth = 3;
+        context.strokeText("ms04", 450, 700);
+        //텍스트 그리기
+
+    </script>
+</body>
+
+</html>
