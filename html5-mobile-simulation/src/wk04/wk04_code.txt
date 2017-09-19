@@ -1,0 +1,46 @@
+=========================================================================
+var image = new Image();
+       image.src = "media/pattern.png";
+       image.onload = function () {
+           var pattern = context;
+
+           context.rect(0, 0, );
+           context.fillStyle = ;
+           context.fill();
+       };
+
+=========================================================================
+
+var image = new Image();
+        image.src = "media/html5_logo.png";
+
+        image = function () {
+              context;
+        };
+=========================================================================
+
+<canvas id="myCanvas" width="600" height="400"></canvas>
+    <script>
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+
+        context.fillStyle = "blue";
+        context.fillRect(0, 0, 100, 100);
+
+        context; // translation
+        context.fillStyle = "red";
+        context.fillRect(0, 0, 100, 100);
+    </script>
+=========================================================================
+
+
+=========================================================================
+
+
+=========================================================================
+
+
+=========================================================================
+
+
+=========================================================================
