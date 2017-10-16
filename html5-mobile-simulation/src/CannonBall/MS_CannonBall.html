@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <title> Mobile Simulation: Game </title>
+    <style type="text/css">
+		canvas {
+            border: 1px dotted red;	/* 캔버스에 경계선을 그려준다. */
+            background-color: #fcff00;	/* 캔버스의 배경색을 지정한다. */
+        }	
+	</style>    
+    
+</head>
+
+<body onload="init();">
+	<h1>Canvas simulation : CannonBall</h1>
+	<canvas id="myCanvas" width="500" height="300"
+        style="border: 1px dotted red"> </canvas>
+        
+    <div id="control">
+        속도<input id="velocity" value="30" type="number" min="0" max="100" step="1" />
+        각도<input id="angle" value="45" type="number" min="0" max="90" step="1" />
+        넷높이<input id="netHeight" value="80" type="number" min="30" max="150" step="1" />
+        <div id="score">점수 = 0</div>
+        <div id="number">횟수 = 0</div>
+        <button onclick="fire()" style="height:24pt;width:50pt">발사</button>
+        <button onclick="reStart()" style="height:24pt;width:80pt">다시시작</button>
+    </div>
+
+        
+    <script>
+    
+		var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+
+		/* 변수 초기화 */
+		var velocity; 	// 사용자가 입력한 공의 초기속도
+		var angle; 		// 사용자가 입력한 공의 초기각도 
+        var net;
+		var ballV;		// 공의 현재 속도 (2차원 속도)
+		var ballVx;		// 공의 현재 x방향 속도 
+		var ballVy;		// 공의 현재 y방향 속도 
+		var ballX = 10;		// 공의 현재 x방향 위치 
+		var ballY = 260;	// 공의 현재 y방향 위치 */
+		var ballRadius = 10;  // 공의 반지름 
+		var score = 0;        // 점수 초기화
+        var netWidth = 30;
+        var net_h = 150;
+        var number = 0;
+
+		var image = new Image(); // 이미지 객체 생성
+		image.src = "media/lawn.png"; // 이미지 파일 이름 설정
+		var netimage = new Image();
+		netimage.src = "media/net.png";
+		var timer;  // 타이머 객체 변수 to control cannonball
+
+		/* 공을 화면에 그린다. */
+		function drawBall() {
+			context.beginPath();
+			context.arc(ballX, ballY, ballRadius, 0, 2.0 * Math.PI, true);
+			context.fillStyle = "red";
+			context.fill();
+		}
+        function random(n1,n2) {
+            return Math.floor(Math.random() * (n2-n1+n1)+n1);
+        }
+
+		/* 배경을 화면에 그린다. */
+		function drawBackground() {
+			context.drawImage(image, 0, 270);
+			context.drawImage(netimage, 450, random(10,50),30,net_h);
+		}
+
+//        function redrawNet(){
+//            context.clearRect(0,0,500,300);
+//            drawBall();
+//            net_h = Number(document.getElementById("netHeight").value);
+//            drawBackground();
+//            //init();
+//        }
+
+		/* 전체 화면을 그리는 함수 */
+		function draw() {
+			context.clearRect(0, 0, 500, 300);
+			/* 화면을 지운다. */
+			drawBall();
+			drawBackground();
+            var msg = "Score : "+ score;     
+            context.font = "30px 'Gothic'";
+            context.fillText(msg,15,50);
+            gameOver();
+            gameClear();
+            
+		}
+
+		/* 초기화를 담당하는 함수 */
+		function init() {
+			ballX = 10;
+			ballY = 260;
+			ballRadius = 10;			
+			draw();      
+		}
+
+		/* 사용자가 발사 버튼을 누르면 호출된다. */
+		function fire() {
+			init();
+			velocity = Number(document.getElementById("velocity").value);
+			angle = Number(document.getElementById("angle").value);
+			var angleR = angle * Math.PI / 180;
+
+			ballVx = velocity * Math.cos(angleR);
+			ballVy = -velocity * Math.sin(angleR);  // negative y-direction
+            
+            net_h = Number(document.getElementById("netHeight").value);
+            
+			draw();
+            number++;
+			timer = setInterval(calculate, 100);  // next position & velocity of cannonball
+            document.getElementById("number").innerHTML = "횟수 = " + number;
+            //return false;			
+            
+		}
+
+		/* 공의 현재 속도와 위치를 업데이트한다. */
+		function calculate() {
+			
+			ballVy = ballVy + 1.98;  // y-방향 속도 계산 (Vy = Vy + g*dt)
+
+			ballX = ballX + ballVx;
+			ballY = ballY + ballVy;
+
+			/* Hit test : 공이 목표물에 맞았으면 */
+			if ((ballX >= 450) && (ballX <= 480) && (ballY >= 60) && (ballY <= 60+net_h)) {
+				score++;
+      
+				document.getElementById("score").innerHTML = "점수 = " + score;
+				clearInterval(timer);
+				init();
+			}
+			/* 공이 경계를 벗어났으면 */
+			if (ballY >= 300 || ballY < 0) {
+				clearInterval(timer);    
+				init();
+			}
+        
+			draw();
+		}
+        function reStart(){
+            //context.clearRect(0,0,500,300);
+			if(timer != null)
+				clearInterval(timer);
+			
+			ballX = 10;
+			ballY = 260;
+			ballRadius = 10;            
+            number = 0;
+            score = 0;
+            document.getElementById("number").innerHTML = "횟수 = " + number;
+            document.getElementById("score").innerHTML = "점수 = " + score;
+			document.getElementById("velocity").value = 30;
+			document.getElementById("angle").value = 45;
+			document.getElementById("netHeight").value = 80;
+			draw();
+//			drawBall();
+//            drawBackground();				
+        }
+        function gameOver(){
+             if((score < 6)&&(number == 10)){
+                clearInterval(timer);
+                 var k = "Game over";
+                 var k1 = "Press new start.";
+                context.font = "30px 'Gothic'";
+                context.fillStyle = "red";
+                context.fillText(k,145,150);
+				context.fillText(k1,145,180);
+            }
+        }
+        function gameClear(){
+             if(score == 10){
+                clearInterval(timer);
+                 var k = "Game Clear!"
+				 var k1 = "Press new start.";
+                 context.font = "30px 'Gothic'";
+                context.fillStyle = "red";
+                context.fillText(k,145,150);
+				context.fillText(k1,145,180);
+            }
+        }
+       
+
+
+    </script>
+
+</body>
+
+</html>
