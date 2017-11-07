@@ -1,0 +1,23 @@
+{
+    "name": "HONG GilDong",
+    "id":"MS99",
+    "age": 22,
+    "email" : "GShong@naver.com",
+    "address": {
+        "nation": "Korea",
+        "city": "GimHae",
+        "postalCode": "12345"
+    },
+    "특기": ["jQuery", "Node.js", "plotly.js","HTML","Javascript","R"],    
+    "phone": "010-1234-5678",
+    "hobby" : ["영화", "음악", "운동", "eSport"],
+    
+    "내가가고싶은곳" : {
+    		"go1" :"호주",
+    		"go2" :"그리스-산토리니",
+    		"go3" :"이탈리아",
+    		"go4" :"프랑스-프리울섬",
+			"go5" :"미국-뉴욕"
+    }
+} 
+ 

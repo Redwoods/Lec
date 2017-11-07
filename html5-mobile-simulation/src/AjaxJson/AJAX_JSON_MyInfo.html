@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <title> Mobile Simulation: AJAX </title>
+    
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <style >
+			body{background-color: #ccffcc;}
+			
+	</style>     
+    
+</head>
+
+<body>
+	<h1>Learning AJAX : load JSON</h1>
+	
+	<h2>My Personal Information: </h2>
+	<div id="myDiv"> </div>
+	<button type="button" onclick="loadJSONDoc()">Get my information</button>
+	<button type="button" onclick="closeJSONDoc()">close</button>
+	
+    <script>
+    function loadJSONDoc() {
+    	var jsonreq;
+        var txt;
+    	var jsonDoc;
+    	
+    	if (window.XMLHttpRequest) {
+    		jsonreq = new XMLHttpRequest(); 
+      } else { 
+       		jsonreq = new ActiveXObject("Microsoft.jsonreq");
+       } 
+    	jsonreq.onreadystatechange = function() {
+    		if(jsonreq.readyState == 4 && jsonreq.status == 200) {
+    			jsonDoc = JSON.parse(jsonreq.responseText);
+    			txt = "";
+    			txt = txt +"Name : " + jsonDoc.name + "<br>";
+				txt = txt +"ID: " + jsonDoc.id + "<br>"; 
+    			txt = txt + "Nation : " + jsonDoc.address.nation + "<br>";
+    			txt = txt + "City : " + jsonDoc.address.city+ "<br>";
+    			txt = txt + "Post Code : " + jsonDoc.address.postalCode + "<br>";
+    			txt = txt + "Phone : " + jsonDoc.phone + "<br>";
+    			txt = txt + "Email : " + jsonDoc.email + "<br>"+"<br>";
+    			
+    			txt = txt + "주특기1 : " + jsonDoc.특기[0] + "<br>";
+    			txt = txt + "주특기2 : " + jsonDoc.특기[1] + "<br>";
+    			txt = txt + "주특기3 : " + jsonDoc.특기[2] + "<br>";
+    			txt = txt + "주특기4 : " + jsonDoc.특기[3] + "<br>"; 
+				txt = txt + "주특기5 : " + jsonDoc.특기[4] + "<br>"; 
+    			txt = txt + "주특기6 : " + jsonDoc.특기[5] + "<br>"+"<br>";
+    			
+    			txt = txt + "취미1 : " + jsonDoc.hobby[0] + "<br>";
+    			txt = txt + "취미2 : " + jsonDoc.hobby[1] + "<br>";
+				txt = txt + "취미3 : " + jsonDoc.hobby[2] + "<br>";
+    			txt = txt + "취미4 : " + jsonDoc.hobby[3] + "<br>"+"<br>";
+    			
+    			txt = txt + "내가 가고싶은 곳1 : " + jsonDoc.내가가고싶은곳.go1 + "<br>";
+    			txt = txt + "내가 가고싶은 곳2 : " + jsonDoc.내가가고싶은곳.go2 + "<br>";
+    			txt = txt + "내가 가고싶은 곳3 : " + jsonDoc.내가가고싶은곳.go3 + "<br>";
+				txt = txt + "내가 가고싶은 곳4 : " + jsonDoc.내가가고싶은곳.go4 + "<br>";
+    			txt = txt + "내가 가고싶은 곳5 : " + jsonDoc.내가가고싶은곳.go5 + "<br>"+"<br>";
+    			  
+				document.getElementById("myDiv").innerHTML = txt;
+    		} 
+    	}; 
+    	jsonreq.open("GET", "data/ms99.json" ,true);
+    	jsonreq.send();
+    	
+    	
+    }
+    
+    function closeJSONDoc() {
+    	var jsonreq;
+        var txt;
+       
+    	txt = "";
+    			
+    	document.getElementById("myDiv").innerHTML = txt;
+    		
+    	
+    	jsonreq.open("GET", "data/hm34.json" ,true);
+    	jsonreq.send();
+    }
+ 
+        
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
