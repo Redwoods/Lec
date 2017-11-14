@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title> Ms12_rpt08 </title>
+
+    <script>
+        function allowDrop(e) {
+            e.preventDefault();
+        }
+
+        function handleDragStart(e) {
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData("Text", e.target.id);
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            var src = e.dataTransfer.getData("Text");
+            e.target.appendChild(document.getElementById(src));
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <h1>Learning DRAG and DROP </h1>
+
+    <div id="shopping_cart" ondrop="handleDrop(event)" ondragover="allowDrop(event)"></div>
+    <br>
+    <img id="img1" src="media/tv.png" draggable="true" ondragstart="handleDragStart(event)" width="150" height="100">
+    <img id="img2" src="media/audio.png" draggable="true" ondragstart="handleDragStart(event)" width="150" height="100">
+    <img id="Img3" src="media/camera.png" draggable="true" ondragstart="handleDragStart(event)" width="150" height="100">
+
+    <h3>블랙홀에 정확히 물건을 넣으세요</h3>
+
+    <svg height="400" width="400" style="background-color:#000">
+        <defs>
+            <radialGradient id="grad4" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                <stop offset="0%" style="stop-color:rgb(0,0,0);stop-opacity:1" />
+                <stop offset="100%" style="stop-color:rgba(255,255,255,0.5);stop-opacity:1" />
+            </radialGradient>
+             <radialGradient id="grad3" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                <stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:1" />
+                <stop offset="100%" style="stop-color:rgba(255,0,0,0.5);stop-opacity:1" />
+            </radialGradient>
+        </defs>
+        <circle  id="Black hole"ondrop="handleDrop(event)" ondragover="allowDrop(event)" r="180"cx="200" cy="200" fill="url(#grad4)">
+            <animate id="g1" attributeName="r" from="0" to="180" begin="0s" dur="2s" repeatCount="indefinite"/>
+             <animateTransform attributeName="transform" attributeType="XML"
+                      type="rotate"
+                      from="250 150 150" to="-200 250 300"
+                      begin="0s" dur="10s"
+                      fill="freeze"
+                      repeatCount="indefinite"
+                      additive="sum"
+            />
+        </circle>
+         <circle  id="Black hole"ondrop="handleDrop(event)" ondragover="allowDrop(event)" r="180"cx="200" cy="200" fill="url(#grad3)">
+            <animate id="g1" attributeName="r" from="180" to="0" begin="0s" dur="2s" repeatCount="indefinite"/>
+              <animateTransform attributeName="transform" attributeType="XML"
+                      type="rotate"
+                      from="250 150 150" to="-200 250 300"
+                      begin="0s" dur="10s"
+                      fill="freeze"
+                      repeatCount="indefinite"
+                      additive="sum"
+            />
+        </circle>
+        <hr>
+        <p><strong>Q:</strong>What tapening in the Black hole?</p>
+         </svg>
+        <svg height="30" width="200">
+            <a xlink:href="http://terms.naver.com/entry.nhn?docId=3571735&cid=58947&categoryId=58981"><text x="0" y="15" fill="blue">Answer</text></a>
+    </svg>
+
+</body>
+
+</html>

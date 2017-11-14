@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title> Mobile Simulation: SVG </title>
+    <style>
+        #blackhole {
+            width: 500px;
+            height: 150px;
+        }
+
+    </style>
+    <script>
+        function allowDrop(e) {
+            e.preventDefault();
+        }
+
+        function handleDragStart(e) {
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData("Text", e.target.id);
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            var src = e.dataTransfer.getData("Text");
+            e.target.appendChild(document.getElementById(src));
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <h1>MS06_SVG_DD</h1>
+    <p><b>휴대폰을 블랙홀 중앙으로 던지세요.</b></p>
+    <div id="phonechart">
+        <img id="img1" src="media/iPhone8.jpg" draggable="true" ondragstart="handleDragStart(event)" width="150" height="100">
+        <img id="img2" src="media/iPhonex.jpg" draggable="true" ondragstart="handleDragStart(event)" width="150" height="100">
+        <img id="Img3" src="media/galaxy%20s8.jpg" draggable="true" ondragstart="handleDragStart(event)" width="150" height="100">
+    </div>
+
+    <br>
+    <div id="blackhole" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
+        <svg height="350" width="800">
+  <defs>
+    <radialGradient id="grad" cx="50%" cy="50%" r="50%" fx="50%" fy="100%">
+      <stop offset="0%" style="stop-color:rgb(0,0,0);
+      stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgb(255,255,255);stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  <ellipse cx="200" cy="70" rx="85" ry="55" fill="url(#grad)" />
+</svg>
+    </div>
+
+    
+</body>
+
+</html>
