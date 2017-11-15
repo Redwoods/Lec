@@ -1,0 +1,32 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<!-- Plotly.js -->
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+	<h1>Data visualization by AAnn</h1>
+	<hr>
+	<h2>Starting graph by AAnn</h2>
+
+	<!-- Plotly chart will be drawn inside this DIV -->
+	<div id="myDiv" style="width: 500px;height: 400px"></div>
+	<hr>
+
+	<script>
+		<!-- JAVASCRIPT CODE GOES HERE -->
+		//var myPlot = document.getElementById('myDiv');
+
+		var data = [
+		{
+			x: [1, 2, 3, 4, 5],
+			y: [1, 2, 4, 8, 16],		
+			type: 'scatter'
+		}];
+
+		Plotly.newPlot('myDiv', data);	
+
+	</script>
+</body>
+</html>	
+
