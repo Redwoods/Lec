@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta charset="utf-8">
+	<title> Mobile Simulation: Advanced Google Map </title>
+	<style>
+	      html, body {
+	        height: 100%;
+	        margin: 0;
+	        padding: 0;
+	      }
+	      #map {
+	        height: 100%;
+	      }
+	</style>
+	   
+</head>
+
+<body>
+	
+	<h2>Mobile Google Map :  </h2>
+    <div id="map"> </div>
+
+<script>
+	var e323 = {lat: 35.249164, lng: 128.901881};  // E323
+	//var e323=new google.maps.LatLng(35.249164, 128.901881);  
+	
+	var map;
+	
+	function initMap()
+	{
+	  var mapProp = {
+	    center:e323,
+	    zoom:15,
+	    mapTypeId:google.maps.MapTypeId.ROADMAP
+	  };	
+	  map=new google.maps.Map(document.getElementById("map"), mapProp);
+	  
+	  google.maps.event.addListener(map, 'click', function(event) {
+	    placeMarker(event.latLng);
+	  });
+	
+	  function placeMarker(location) {
+	    var marker = new google.maps.Marker({
+	      position: location,
+	      map: map,
+	  });
+	  
+	  var infowindow = new google.maps.InfoWindow({
+	    content: 'Latitude: ' + location.lat().toFixed(6) +
+	    '<br>Longitude: ' + location.lng().toFixed(6)
+	  });	  
+	  infowindow.open(map,marker);
+	 }				
+	}
+	//google.maps.event.addDomListener(window, 'load', initialize);
+	
+</script>
+
+<script
+	src="https://maps.googleapis.com/maps/api/js?callback=initMap">
+</script> 
+
+</body>
+</html>

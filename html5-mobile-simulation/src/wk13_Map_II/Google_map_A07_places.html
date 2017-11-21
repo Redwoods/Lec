@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Place searches</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap" 
+    async defer></script>
+    
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 15%;
+        background-color: #ff0;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+        position: absolute;
+        z-index: 5;
+      }
+
+    </style>
+    
+<script>
+	var map;
+	var markers =[];  // array to store all markers
+	var infowindow;
+	var service;
+	var target_location; // name of check-up location
+	var e323 = {lat: 35.249164, lng: 128.901881}; // 35.249164, 128.901881)
+	var annarbor = {lat: 42.318388, lng: -83.706521};//windwood dr. , ann arbor, mi
+	//var pyrmont = {lat: -33.867, lng: 151.195};
+	
+	function initMap() {
+	  
+	  target_location=e323;   // annarbor
+	
+	  map = new google.maps.Map(document.getElementById('map'), {
+	    center: target_location, //target_location, //pyrmont,ann arbor, 
+	    zoom: 15
+	  });
+	
+	  infowindow = new google.maps.InfoWindow();
+	  
+	  show_places('cafe');
+	
+	  var onChangeHandler = function() {
+	    var obj = JSON.parse(document.getElementById('target').value);
+	    //console.log(obj.lat);
+	    target_location = {lat:obj.lat, lng:obj.lng};
+	    // select type of places
+	    show_places('cafe');
+	  };
+	
+	  document.getElementById('target').addEventListener('change', onChangeHandler);
+	  
+	}
+	
+	function show_places(whatplace) {
+	    clearMarkers();  // clear all previous markers
+	
+	    map = new google.maps.Map(document.getElementById('map'), {
+	      center: target_location, //target_location, //pyrmont,ann arbor, 
+	      zoom: 15
+	    });
+	
+	    service = new google.maps.places.PlacesService(map);
+	    service.nearbySearch({
+	      location: target_location, //target_location, //annarbor, //pyrmont,
+	      radius: 2000,
+	      types: [whatplace]  // store, food
+	    }, callback);
+	}
+	
+	function callback(results, status) {
+	
+	  if (status === google.maps.places.PlacesServiceStatus.OK) {
+	    for (var i = 0; i < results.length; i++) {
+	      createMarker(results[i]);
+	    }
+	  }
+	}
+	
+	function createMarker(place) {
+	  var placeLoc = place.geometry.location;
+	  var marker = new google.maps.Marker({
+	    map: map,
+	    position: placeLoc  //place.geometry.location
+	  });
+	  markers.push(marker);
+	
+	  google.maps.event.addListener(marker, 'click', function() {
+	    infowindow.setContent(place.name);
+	    infowindow.open(map, this);
+	  });	
+	}
+	
+	// Sets the map on all markers in the array.
+	function setMapOnAll(map) {
+	  for (var i = 0; i < markers.length; i++) {
+	    markers[i].setMap(map);
+	  }
+	}
+	
+	// Removes the markers from the map, but keeps them in the array.
+	function clearMarkers() {
+	  setMapOnAll(null);
+	}	
+	// Shows any markers currently in the array.
+	function showMarkers() {
+	  setMapOnAll(map);
+	}	
+	// Deletes all markers in the array by removing references to them.
+	function deleteMarkers() {
+	  clearMarkers();
+	  markers = [];
+	}
+
+ </script>
+</head>
+
+<body>
+
+    <div id="floating-panel">
+      <button onclick="show_places('food')">Foods</button>
+      <button onclick="show_places('store')">Stores</button>
+      <button onclick="show_places('book_store')">서점</button>
+      <button onclick="show_places('pharmacy')">약국</button>
+      <button onclick="show_places('cafe')">Coffee shops</button>
+      <button onclick="show_places('bar')">Bar</button>
+      <button onclick="show_places('hospital')">의원</button>
+      <button onclick="show_places('dentist')">치과</button>
+      <button onclick="show_places('hair_care')">미용실</button>
+      <br>
+      <b>Choose location: </b>
+      <select id="target">        
+        <option value='{"lat": 35.249164,"lng": 128.901881}'>김해, 인제대 </option>
+        <option value='{"lat": 35.132151,"lng": 129.111748}'>MS00 Home </option>
+        <option value='{"lat": 42.318388,"lng": -83.706521}'>Ann Arbor</option>
+      </select>
+    </div>
+
+    <div id="map"> </div>
+    
+</body>
+</html>

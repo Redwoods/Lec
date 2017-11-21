@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+<meta charset="utf-8" />
+<title> Mobile Simulation: Google Map </title>
+<style type="text/css">
+	html { height: 100% }
+	body { height: 100%; margin: 0; }
+	#googleMap { width: 100%; height: 100%; }
+</style>
+<script
+	src="http://maps.googleapis.com/maps/api/js?v=3.exp&language=ko
+	&sensor=false&libraries=geometry">
+</script>
+
+<script>
+// global variables
+var map;
+var flightPlanCoordinates;
+var flightPath;
+var pointDistances;
+var id;
+// Defining arrow symbol
+var arrowSymbol = {
+	strokeColor: '#00F',
+	scale: 4,
+	path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+};
+
+function addAnimatedPolyline() {
+  //pointDistances=evalDistanceRatio();
+  
+  flightPath = new google.maps.Polyline({
+    path: flightPlanCoordinates,
+    geodesic: true,
+    icons: [{
+	  icon: arrowSymbol,
+	  offset: '100%'
+	}],
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 3,
+    map: map
+  });
+  // Calling the arrow animation function
+  animateArrow();  
+}
+
+/*
+function evalDistanceRatio() {
+	// point distances from beginning in %
+    var sphericalLib = google.maps.geometry.spherical;
+    map.setCenter(flightPlanCoordinates[0]);
+    var wholeDist;
+    pointDistances[0] = 0;
+    for (var i = 1; i < flightPlanCoordinates.length; i++) {
+        var partialDistance = sphericalLib.computeDistanceBetween(
+                                            flightPlanCoordinates[i], 
+                                            flightPlanCoordinates[i - 1]);
+        pointDistances[i] = pointDistances[i - 1] + partialDistance;
+        console.log('pointDistances[' + i + ']: ' + pointDistances[i]);
+    }
+    // convert to percentage offset
+    wholeDist = pointDistances[pointDistances.length - 1];
+    for (var i = 0; i < flightPlanCoordinates.length; i++) {
+        pointDistances[i] = 100 * pointDistances[i] / wholeDist;
+        console.log('pointDistances[' + i + ']: ' + pointDistances[i]);
+    }
+    console.log('whole distance: ' + wholeDist);
+    return pointDistances;
+}
+*/
+
+function animateArrow() {
+	/* var counter = 0;
+	pointDistances = evalDistanceRatio();
+	
+	var intervalID=window.setInterval(function() {
+	counter = (counter + 1) % 201;
+	var arrows = flightPath.get('icons');
+	arrows[0].offset = (counter / 2) + '%';
+	flightPath.set('icons', arrows);
+	if(counter==200){
+		clearInterval(intervalID);
+	}
+	}, 50);	*/
+	
+	var count = 0;
+    var offset;
+    var sentiel = -1;
+        
+    id = window.setInterval(function () {
+        count = (count + 1) % 201;
+        offset = count /2;
+        
+        for (var i = pointDistances.length-1; i > sentiel; i--) {
+            if (offset > pointDistances[i]) {
+                console.log('create marker');
+                var marker = new google.maps.Marker({
+                    icon: {
+                        url:"https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle_blue.png",
+                        size: new google.maps.Size(16,16),
+                        anchor: new google.maps.Point(4,4)
+                    },
+                    //icon: 'image/pin_s_tr.png',
+                    position: flightPath.getPath().getAt(i),
+                    title: flightPath.getPath().getAt(i).toUrlValue(6),
+                    animation:google.maps.Animation.BOUNCE,
+                    map: map
+                });
+                
+                sentiel++;
+                break;
+            }
+        }       
+        // we have only one icon
+        var icons = flightPath.get('icons');
+        icons[0].offset = (offset) + '%';
+        flightPath.set('icons', icons);
+        
+        if (flightPath.get('icons')[0].offset == "100%") {
+            window.clearInterval(id);
+        }
+        
+    }, 100);
+}
+
+function initialize() {
+  var mapProp = {
+    zoom: 7,
+    center: new google.maps.LatLng(35.840212, 127.125173),  // 전주
+    mapTypeId: google.maps.MapTypeId.TERRAIN
+  };
+
+  map = new google.maps.Map(document.getElementById('googleMap'),
+      mapProp);
+      
+  // the path of Korean flight between Gimpo, Jeju, and Busan, Korea.
+  flightPlanCoordinates = [
+    new google.maps.LatLng(37.558909, 126.803083),  // Gimpo airport
+    new google.maps.LatLng(33.507758, 126.491434),  // Jeju airport
+    new google.maps.LatLng(35.173431, 128.946659),  // Gimhae airport
+  ];
+  
+  // point distances from beginning in %
+  
+  	map.setCenter(flightPlanCoordinates[0]);
+    var sphericalLib = google.maps.geometry.spherical;
+    
+    var wholeDist;
+    pointDistances = [0];  // 1st distance = 0
+    for (var i = 1; i < flightPlanCoordinates.length; i++) {
+        var partialDistance = sphericalLib.computeDistanceBetween(
+                                            flightPlanCoordinates[i], 
+                                            flightPlanCoordinates[i - 1]);
+        pointDistances[i] = pointDistances[i - 1] + partialDistance;
+        console.log('pointDistances[' + i + ']: ' + pointDistances[i]);
+    }
+    // convert to percentage offset
+    wholeDist = pointDistances[pointDistances.length - 1];
+    for (var i = 0; i < flightPlanCoordinates.length; i++) {
+        pointDistances[i] = 100 * pointDistances[i] / wholeDist;
+        console.log('pointDistances[' + i + ']: ' + pointDistances[i]);
+    }
+    console.log('whole distance: ' + wholeDist);
+
+  //pointDistances=evalDistanceRatio();
+  addAnimatedPolyline();
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+</head>
+
+<body>
+<h2>Mobile Google Map : Flight route animation </h2>
+
+<div id="googleMap"> </div>
+
+</body>
+</html>
