@@ -1,0 +1,41 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<!-- Plotly.js -->
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+	<h1>Data streaming by AAnn</h1>
+	<hr>
+	<h2>Streaming data</h2>	
+	<div id="graph"></div>
+
+	<script>
+		function rand() { 
+			return Math.random(); // 0.0 ~ 1.0
+		}
+
+		trace = {
+			y: [1,2,3].map(rand),
+			mode: 'lines',
+			line: {color: '#80CAF6'}
+		};
+
+		data = [trace];
+
+		Plotly.plot('graph', data);
+
+		// var cnt = 0;
+
+		// var interval = setInterval(function() {
+
+		// 	//cnt++;
+		// 	Plotly.extendTraces('graph', {
+		// 		y: [[rand()]]
+		// 	}, [0]);
+
+		// 	if(cnt == 50) clearInterval(interval);
+		// }, 1000);
+	</script>
+</body>
+</html>
