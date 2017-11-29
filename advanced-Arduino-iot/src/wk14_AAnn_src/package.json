@@ -1,0 +1,21 @@
+{
+  "name": "ldr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ldr_node.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cds",
+    "ldr",
+    "node",
+    "arduino"
+  ],
+  "author": "aa00",
+  "license": "MIT",
+  "dependencies": {
+    "serialport": "^4.0.7",
+    "socket.io": "^1.7.3"
+  }
+}
