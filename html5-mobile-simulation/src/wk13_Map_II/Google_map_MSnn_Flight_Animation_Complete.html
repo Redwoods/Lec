@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+<meta charset="utf-8" />
+<title> Mobile Simulation: Google Map </title>
+<style type="text/css">
+	html { height: 100% }
+	body { height: 100%; margin: 0; }
+	#googleMap { width: 100%; height: 100%; }
+</style>
+<script
+	src="http://maps.googleapis.com/maps/api/js?v=3.exp&language=ko&sensor=false">
+</script>
+
+<script>
+var map;
+var flightPath;
+// Defining arrow symbol
+var arrowSymbol = {
+	strokeColor: '#00F',
+	scale: 3,
+	path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+};
+
+function addAnimatedPolyline() {
+// the path of Korean flight between Gimpo, Jeju, and Busan, Korea.
+  var flightPlanCoordinates = [
+    new google.maps.LatLng(37.558909, 126.803083),  // Gimpo airport
+    new google.maps.LatLng(33.507758, 126.491434),  // Jeju airport
+    new google.maps.LatLng(35.173431, 128.946659),  // Gimhae airport
+  ];
+  flightPath = new google.maps.Polyline({
+    path: flightPlanCoordinates,
+    //geodesic: true,
+    icons: [{
+	  icon: arrowSymbol,
+	  offset: '100%'
+	}],
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 3,
+    map: map
+  });
+  // Calling the arrow animation function
+  animateArrow();  
+}
+
+function animateArrow() {
+	var counter = 0;
+	var intervalID=window.setInterval(function() {
+	counter = (counter + 1) % 201;
+	var arrows = flightPath.get('icons');
+	arrows[0].offset = (counter / 2) + '%';
+	flightPath.set('icons', arrows);
+	if(counter==200){
+		clearInterval(intervalID);
+	}
+	}, 50);	
+}
+
+function initialize() {
+  var mapProp = {
+    zoom: 7,
+    center: new google.maps.LatLng(35.840212, 127.125173),  // 전주
+    mapTypeId: google.maps.MapTypeId.TERRAIN
+  };
+
+  map = new google.maps.Map(document.getElementById('googleMap'),
+      mapProp);
+
+  addAnimatedPolyline();
+  
+  /*var weatherLayer = new google.maps.weather.WeatherLayer ({
+	temperatureUnits:
+	google.maps.weather.TemperatureUnit.CELCIUS
+  });	
+  weatherLayer.setMap(map);	
+  
+  var cloudLayer = new google.maps.weather.CloudLayer();
+  cloudLayer.setMap(map);*/
+}
+
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+</head>
+
+<body>
+<h2>Mobile Google Map : Flight route animation </h2>
+
+<div id="googleMap"> </div>
+
+</body>
+</html>

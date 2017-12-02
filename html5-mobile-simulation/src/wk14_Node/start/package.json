@@ -1,0 +1,16 @@
+{
+  "name": "ms00",
+  "version": "1.0.0",
+  "description": "start node",
+  "main": "index.js",
+  "scripts": {
+	"start": "node hello.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "basic"
+  ],
+  "author": "ms00",
+  "license": "MIT"
+}

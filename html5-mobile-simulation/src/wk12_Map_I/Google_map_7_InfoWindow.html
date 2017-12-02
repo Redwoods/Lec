@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title> Mobile Simulation: Google Map </title>
+<script
+	src="http://maps.googleapis.com/maps/api/js?v=3.exp&language=ko&sensor=false">
+</script>
+
+<script>
+var e323=new google.maps.LatLng(35.249164, 128.901881);  // E323
+
+function initialize()
+{
+  var mapProp = {
+    center:e323,
+    zoom:10,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+  var marker=new google.maps.Marker({
+	  position: e323
+  });
+  
+  var infowindow = new google.maps.InfoWindow({
+    content:"E323 <br> Hi, comsi students!"
+  });
+
+  infowindow.open(map,marker);
+
+  marker.setMap(map);
+  
+}
+
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+</head>
+
+<body>
+<h1>Using Google Map : Info window</h1>
+
+<div id="googleMap" style="width:750px;height:500px;"> </div>
+
+</body>
+</html>

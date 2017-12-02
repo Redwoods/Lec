@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title> Mobile Simulation: Geolocation </title>
+</head>
+
+<body>
+	<h1> Using Geolocation : my location </h1>
+
+	<button onclick="getGeolocation()">위치 정보 얻기</button>
+	<h2 id="target"> Click the button to get your location.</h2>
+
+	<script>
+		var myDiv = document.getElementById("target");
+
+		function getGeolocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showLocation, showError);
+			} else {
+				myDiv.innerHTML = "No gps support";
+			}
+		}
+
+		function showLocation(location) {
+			myDiv.innerHTML = "(위도: " + location.coords.latitude.toFixed(6) +
+				", 경도: " + location.coords.longitude.toFixed(6) + ")";
+		}
+
+		function showError(error) {
+			switch (error.code) {
+				case error.PERMISSION_DENIED:
+					myDiv.innerHTML = "User denied the request for Geolocation."
+					break;
+				case error.POSITION_UNAVAILABLE:
+					myDiv.innerHTML = "Location information is unavailable."
+					break;
+				case error.TIMEOUT:
+					myDiv.innerHTML = "The request to get user location timed out."
+					break;
+				case error.UNKNOWN_ERROR:
+					myDiv.innerHTML = "An unknown error occurred."
+					break;
+			}
+		}
+
+	</script>
+
+</body>
+
+</html>
