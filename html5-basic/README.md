@@ -1,4 +1,4 @@
-# Lec : HTML5 & Javascript - basic 
+# Lec : HTML5 & Javascript - basic
 
 All lectures by Redwoods in Inje University from 2018 and 2017.
 
