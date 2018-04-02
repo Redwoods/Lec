@@ -1,4 +1,4 @@
-# Lec : Introductionto Healthcare Signal Visualization
+# Lec : Introduction to Healthcare Signal Visualization
 
 All lectures by Redwoods in Inje University from 2018 and 2017.
 
