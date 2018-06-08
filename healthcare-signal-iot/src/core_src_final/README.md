@@ -20,5 +20,5 @@
         * MongoDB에 저장된 IOT 센서 데이터를 csv, json 파일로 저장하는 방법
         * MongoDB에 외부  데이터를 저장하는 방법 
         
-> github > src > core_code_final 폴더를 참조 (cds_dht222,  ecg_hr,  MongoDB)
+> github > src > core_src_final 폴더를 참조 (cds_dht222,  ecg_hr,  MongoDB)
 
