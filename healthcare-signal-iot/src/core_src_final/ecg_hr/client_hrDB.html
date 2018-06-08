@@ -1,0 +1,92 @@
+<!DOCTYPE html> 
+<head>
+    <meta charset="utf-8">
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>MongoDB database visualization by HS00</h1>
+    <hr>
+    <h2>Time series : Heart rate</h2>
+
+    <!-- Plotly chart will be drawn inside this DIV -->
+    <div id="myDiv" style="width: 1000px;height: 700px"></div>
+    
+    <script>
+        <!-- JAVASCRIPT CODE GOES HERE -->
+
+        Plotly.d3.json("http://localhost:3030/hrv", function(err, json){
+            //alert(JSON.stringify(json));  // It works!!!
+            
+            if(err) throw err;
+
+            var date = [];
+            var hrv = [];
+            var jsonData = eval(JSON.stringify(json));
+
+            for (var i = 0; i < jsonData.length; i++) {
+                date[i] = jsonData[i].date;
+                hrv[i] = jsonData[i].hr;                
+            }
+            // time series of sensor data
+            var trace1 = {
+                type: "scatter",
+                mode: "lines+markers",
+                name: 'Heart rate',
+                x: date,
+                y: hrv,
+                line: {color: '#fc1234'}
+            }
+                        
+            var data = [trace1];
+
+            // Layout with builtin rangeslider
+            var layout = {
+                title: 'HR with rangeslider',
+                xaxis: {
+                    autorange: true,
+                    range: [date[0], date[date.length-1]],
+                    rangeselector: {buttons: [
+                        {
+                            count: 5,
+                            label: '5 s',
+                            step: 'second',
+                            stepmode: 'backward'
+                        },
+                        {
+                            count: 30,
+                            label: '30 s',
+                            step: 'second',
+                            stepmode: 'backward'
+                        },
+                        {
+                            count: 1,
+                            label: '1 min',
+                            step: 'minute',
+                            stepmode: 'backward'
+                        },
+                        {
+                            count: 5,
+                            label: '5 min',
+                            step: 'minute',
+                            stepmode: 'backward'
+                        },
+                        {step: 'all'}
+                        ]},
+                        rangeslider: {range: [date[0], date[date.length-1]]},
+                        type: 'date'
+                    },
+                    yaxis: {
+                        autorange: true,
+                        range: [0, 200],
+                        type: 'linear'
+                    }
+                };
+
+                Plotly.newPlot('myDiv', data, layout);
+            })      
+
+        </script>
+
+    </body>
+</html> 
