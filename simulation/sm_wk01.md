@@ -34,6 +34,6 @@
 
 # 수업자료실 : github
 
-# > [Redwood's GitHub](https://github.com/Redwoods/Py/tree/master/py2019)
+# > [Redwood's GitHub](https://github.com/Redwoods/Lec/tree/master/simulation)
 
-> https://github.com/Redwoods/Py/tree/master/py2019
+> https://github.com/Redwoods/Lec/tree/master/simulation
