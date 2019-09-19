@@ -78,5 +78,5 @@ a, b
 """
 Author: redwoods
 Date: 2019-09-xx
-파이썬 코드: wk03_ex09_exercises.py
+파이썬 코드: ch2_11_exercises.py
 """
