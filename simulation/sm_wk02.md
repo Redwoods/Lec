@@ -48,15 +48,15 @@
 ## [Challenge]
 - 실습 결과 노트를 github에 올리기 (repo: "smxy")
   - filename: 
-    - wk02_ch2_01_numeric.ipynb
-    - wk02_ch2_02_string.ipynb
-    - wk02_ch2_03_list.ipynb
-    - wk02_ch2_04_tuple.ipynb
-    - wk02_ch2_05_dictionary.ipynb
-    - wk02_ch2_06_set.ipynb
-    - wk02_ch2_07_bool.ipynb
-    - wk02_ch2_08_variable.ipynb
-    - wk02_ch2_09_exercises.ipynb
+    - ch2_01_numeric.ipynb
+    - ch2_02_string.ipynb
+    - ch2_03_list.ipynb
+    - ch2_04_tuple.ipynb
+    - ch2_05_dictionary.ipynb
+    - ch2_06_set.ipynb
+    - ch2_07_bool.ipynb
+    - ch2_08_variable.ipynb
+    - ch2_09_exercises.ipynb
   
 ## 다음 주 수업 안내
 - 파이썬의 자료형 II.
