@@ -69,6 +69,7 @@ decimal.getcontext().prec=4
 x*y
 # Decimal('8.604')
 #
+#
 """
 Author: redwoods
 파이썬 코드: ch2_09_bool.py
