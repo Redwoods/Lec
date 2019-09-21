@@ -57,7 +57,6 @@ a
 b
 
 #
-#
 """
 Author: redwoods
 파이썬 코드: ch2_10_variable.py
