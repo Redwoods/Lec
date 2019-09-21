@@ -8,11 +8,13 @@ a = [1, 2, 3]
 id(a)  # a 변수가 가리키는 메모리의 주소
 # list
 a = [1, 2, 3]
+id(a)
 b = a
 id(a), id(b)
 a is b
 a[1] = 4
 a, b
+a is b
 b = [1, 2, 3]
 id(b)
 a is b

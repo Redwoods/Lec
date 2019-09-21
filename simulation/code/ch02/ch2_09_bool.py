@@ -25,6 +25,7 @@ False + 1
 bool("python")
 bool("")
 bool([1, 2, 3])
+bool([2, 3])
 bool([])
 bool(())
 bool({})
@@ -35,6 +36,7 @@ bool(None)
 # 불 값을 이용한 코드
 #
 a = [1, 2, 3, 4]
+#
 while a:
     print(a.pop())
 
@@ -44,6 +46,7 @@ if []:
     print("참")
 else:
     print("거짓")
+
 
 ############################
 #  Representation error
