@@ -1,5 +1,10 @@
 # Advanced simulation using Python
 ## 2019년 2학기
+## 중간시험 안내
+- 시간: 10월 25일 오전 10시~11시
+- 장소: E323
+- 범위: 1주~6주 수업 (교재 5장4절(예외처리)까지)
+- 배점: 30 (총점의 30%)
 ## 2019 class
 - [SM01, 이재호](https://github.com/) ##
 - [SM02, 김도훈](https://github.com/Domo9610/SM02) #
