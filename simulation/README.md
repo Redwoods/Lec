@@ -15,7 +15,7 @@
 - [SM07, 도한솔](https://github.com/sorrrrrr/sm07) #
 - [SM08, 박지수](https://github.com/) ##
 - [SM09, 경명아](https://github.com/) ##
-- [SM10, 박현승](https://github.com/comsihuyn/SM10) ###
+- [SM10, 박현승](https://github.com/comsihyun/SM10) ###
 - [SM11, 윤승훈](https://github.com/Tajyu/sm11) 
 - [SM12, 전규은](https://github.com/Gyunnni/SM12) 
 - [SM13, 정영관](https://github.com/swarthyPig/SM13) @
