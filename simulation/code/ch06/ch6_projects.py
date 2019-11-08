@@ -226,7 +226,7 @@ print("5. 탭을 4개의 공백으로 바꾸기")
 """
 python tabto4.py a.txt b.txt
 """
-# 1. tabto4.py는 C:\doit 디렉터리에 저장
+# 1. tabto4.py는 \doit 디렉터리에 저장
 """
 # ./doit/tabto4.py
 import sys
