@@ -28,5 +28,5 @@
 - [SM14](https://github.com/) ##
 - [SM99, 문민규](https://github.com/moonmingyu/sm-)
 - [SM100, 백동진](https://github.com/Dongjin100/sm100)
-- [SM101, 박진석](https://github.com/rlfwo93/python) #
+- [SM101, 박진석](https://github.com/rlfwo93/python) 
 ---
