@@ -3,5 +3,8 @@
 - matplotlib
 - pandas
 - sklearn
+---
 - tensorflow
-- keras
+- keras (TF v.1)
+- tf.keras (TF v.2)
+
