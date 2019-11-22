@@ -2,8 +2,8 @@
 - numpy
 - matplotlib
 - pandas
-- sklearn
 ---
+- sklearn
 - tensorflow
 - keras (TF v.1)
 - tf.keras (TF v.2)
