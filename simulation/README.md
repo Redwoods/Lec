@@ -5,7 +5,7 @@
 - 장소: E323
 - 범위: 9주~15주 수업 (교재 6, 8장, 파이썬 모듈 강의))
 - 배점: 30 (총점의 30%)
-- 시험방법: Open books and prints (No phone, laptop, tablet, PC)
+- 시험방법: **Open books and prints (No phone, laptop, tablet, PC)**
 
 ## 기말고사 결과
 - 평균: 
