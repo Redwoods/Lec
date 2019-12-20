@@ -8,7 +8,7 @@
 - 시험방법: **Open books and prints (No phone, laptop, tablet, PC)**
 
 - [기말시험 노우트 올리기](https://github.com/Redwoods/Lec/blob/master/simulation/code/notebook/sm00_exam_final.ipynb)
-- 12월 23일 오후 11시. 
+>> 12월 23일 오후 11시. 
 
 ## 기말고사 결과
 - 평균: 
