@@ -12,4 +12,7 @@
 - Django
 - BeautifulSoup
 - tensorflow.js
+- streamlit
+- dash
+
 
